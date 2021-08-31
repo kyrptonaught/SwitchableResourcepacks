@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "switchableresourcepacks",
+  "version": "1.0.0-1.17",
+  "name": "Switchable ResourcePacks",
+  "description": "Allows the changing of server resourcepacks through a command!",
+  "authors": [
+    "kyrptonaught"
+  ],
+  "contact": {
+    "homepage": "https://github.com/kyrptonaught/switchableresourcepacks",
+    "sources": "https://github.com/kyrptonaught/switchableresourcepacks"
+  },
+  "license": "MIT",
+  "icon": "assets/kyrptcarts/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "server": [
+      "net.kyrptonaught.switchableresourcepacks.SwitchableResourcepacksMod"
+    ]
+  },
+  "mixins": [
+    {
+      "config": "switchableresourcepacks.mixins.json",
+      "environment": "*"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16"
+  }
+}

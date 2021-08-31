@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "net.kyrptonaught.switchableresourcepacks.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "ConditionsContainerAccessor",
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

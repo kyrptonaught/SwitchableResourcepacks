@@ -1,0 +1,23 @@
+{
+	// Should all criteria be automatically revoked next time the command is executed.
+	"autoRevoke": false,
+	// List of all the resourcepacks configurations to use
+	"packs": [
+		{
+			"packname": "example_pack",
+			"url": "https://example.com/resourcepack.zip",
+			"hash": "examplehash",
+			"required": true,
+			"hasPrompt": true,
+			"message": "plz use me"
+		},
+		{
+			"packname": "example_pack2",
+			"url": "https://example.com/resourcepack.zip",
+			"hash": "examplehash",
+			"required": true,
+			"hasPrompt": true,
+			"message": "plz use me"
+		}
+	]
+}

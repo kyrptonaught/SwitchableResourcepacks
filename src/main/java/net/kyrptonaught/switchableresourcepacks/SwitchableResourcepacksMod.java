@@ -34,6 +34,7 @@ public class SwitchableResourcepacksMod implements DedicatedServerModInitializer
         getConfig().packs.forEach(rpOption -> {
             rpOptionHashMap.put(rpOption.packname, rpOption);
         });
+
         if (getConfig().packs.size() == 0) {
             ResourcePackConfig.RPOption option = new ResourcePackConfig.RPOption();
             option.packname = "example_pack";
@@ -48,7 +49,7 @@ public class SwitchableResourcepacksMod implements DedicatedServerModInitializer
         FAILED = CriterionRegistry.register(new CustomCriterion("failed"));
     }
 
-    public ResourcePackConfig getConfig() {
+    public static ResourcePackConfig getConfig() {
         return ((ResourcePackConfig) configManager.getConfig());
     }
 
@@ -64,9 +65,11 @@ public class SwitchableResourcepacksMod implements DedicatedServerModInitializer
                                 return 1;
                             }
                             ServerPlayerEntity player = commandContext.getSource().getPlayer();
-                            STARTED.revoke(player);
-                            FINISHED.revoke(player);
-                            FAILED.revoke(player);
+                            if (getConfig().autoRevoke) {
+                                STARTED.revoke(player);
+                                FINISHED.revoke(player);
+                                FAILED.revoke(player);
+                            }
                             player.sendResourcePackUrl(rpOption.url, rpOption.hash, rpOption.required, rpOption.hasPrompt ? new LiteralText(rpOption.message) : null);
                             Text feedBack = new LiteralText("Enabled pack: ").append(packname);
                             commandContext.getSource().sendFeedback(feedBack, false);

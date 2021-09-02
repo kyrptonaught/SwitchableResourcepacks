@@ -3,7 +3,7 @@
   "package": "net.kyrptonaught.switchableresourcepacks.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
-    "ResourcePackStatusMixin",
+    "ResourcePackStatusMixin"
   ],
   "injectors": {
     "defaultRequire": 1

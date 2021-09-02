@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "switchableresourcepacks",
-  "version": "1.0.0-1.17",
+  "version": "1.0.1-1.17",
   "name": "Switchable ResourcePacks",
   "description": "Allows the changing of server resourcepacks through a command!",
   "authors": [
@@ -15,7 +15,7 @@
   "icon": "assets/kyrptcarts/icon.png",
   "environment": "*",
   "entrypoints": {
-    "server": [
+    "main": [
       "net.kyrptonaught.switchableresourcepacks.SwitchableResourcepacksMod"
     ]
   },

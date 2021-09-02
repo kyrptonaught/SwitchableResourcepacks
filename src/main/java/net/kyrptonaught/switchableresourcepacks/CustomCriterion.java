@@ -11,11 +11,12 @@ import net.minecraft.util.Identifier;
 
 
 public class CustomCriterion implements Criterion<CustomCriterion.Conditions> {
-    private final Identifier ID ;
+    private final Identifier ID;
 
-    public CustomCriterion(String status){
-       ID = new Identifier(SwitchableResourcepacksMod.MOD_ID, status);
+    public CustomCriterion(String status) {
+        ID = new Identifier(SwitchableResourcepacksMod.MOD_ID, status);
     }
+
     @Override
     public Identifier getId() {
         return ID;

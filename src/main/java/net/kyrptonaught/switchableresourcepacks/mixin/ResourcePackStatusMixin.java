@@ -1,7 +1,6 @@
 package net.kyrptonaught.switchableresourcepacks.mixin;
 
 import net.kyrptonaught.switchableresourcepacks.SwitchableResourcepacksMod;
-import net.minecraft.network.NetworkThreadUtils;
 import net.minecraft.network.packet.c2s.play.ResourcePackStatusC2SPacket;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;

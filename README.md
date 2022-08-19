@@ -3,6 +3,8 @@
 
 Server side mod adding a command to trigger a resourcepack to be sent to the client, using the same method as the built in required resourcepack function when joining a server. This mod will not do anything when installed on clients, and will function with vanilla clients.
 
+#### This project has been merged into [Server Utils](https://github.com/kyrptonaught/Server-Utils). Further updates will occur there.
+
 ## How to use
 
 This mod adds one command: 

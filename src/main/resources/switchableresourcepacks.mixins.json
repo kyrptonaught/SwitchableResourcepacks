@@ -1,7 +1,7 @@
 {
   "required": true,
   "package": "net.kyrptonaught.switchableresourcepacks.mixin",
-  "compatibilityLevel": "JAVA_16",
+  "compatibilityLevel": "JAVA_17",
   "mixins": [
     "ResourcePackStatusMixin"
   ],

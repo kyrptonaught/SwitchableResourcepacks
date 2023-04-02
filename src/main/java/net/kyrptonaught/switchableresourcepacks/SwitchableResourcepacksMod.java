@@ -4,14 +4,15 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.mixin.object.builder.CriteriaAccessor;
 import net.kyrptonaught.kyrptconfig.config.ConfigManager;
+import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -53,11 +54,12 @@ public class SwitchableResourcepacksMod implements ModInitializer {
         return (ResourcePackConfig) configManager.getConfig();
     }
 
-    public static void register(CommandDispatcher<ServerCommandSource> dispatcher, boolean b) {
+    private static void register(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess commandRegistryAccess, CommandManager.RegistrationEnvironment registrationEnvironment) {
         LiteralArgumentBuilder<ServerCommandSource> cmd = CommandManager.literal("loadresource").requires((source) -> source.hasPermissionLevel(0));
         for (String packname : rpOptionHashMap.keySet()) {
             cmd.then(CommandManager.literal(packname)
                     .then(CommandManager.argument("player", EntityArgumentType.players())
+                            .requires((source) -> source.hasPermissionLevel(2))
                             .executes(commandContext -> execute(commandContext, packname, EntityArgumentType.getPlayers(commandContext, "player"))))
                     .executes(commandContext -> execute(commandContext, packname, Collections.singleton(commandContext.getSource().getPlayer()))));
         }
@@ -67,7 +69,7 @@ public class SwitchableResourcepacksMod implements ModInitializer {
     public static int execute(CommandContext<ServerCommandSource> commandContext, String packname, Collection<ServerPlayerEntity> players) {
         ResourcePackConfig.RPOption rpOption = rpOptionHashMap.get(packname);
         if (rpOption == null) {
-            commandContext.getSource().sendFeedback(new LiteralText("Packname: ").append(packname).append(" was not found"), false);
+            commandContext.getSource().sendFeedback(Text.literal("Packname: ").append(packname).append(" was not found"), false);
             return 1;
         }
         players.forEach(player -> {
@@ -77,9 +79,9 @@ public class SwitchableResourcepacksMod implements ModInitializer {
                 FAILED.revoke(player);
             }
 
-            player.sendResourcePackUrl(rpOption.url, rpOption.hash, rpOption.required, rpOption.hasPrompt ? new LiteralText(rpOption.message) : null);
+            player.sendResourcePackUrl(rpOption.url, rpOption.hash, rpOption.required, rpOption.hasPrompt ? Text.literal(rpOption.message) : null);
         });
-        commandContext.getSource().sendFeedback(new LiteralText("Enabled pack: ").append(rpOption.packname), false);
+        commandContext.getSource().sendFeedback(Text.literal("Enabled pack: ").append(rpOption.packname), false);
         return 1;
     }
 }

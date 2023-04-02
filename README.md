@@ -35,14 +35,14 @@ Adding a new pack is as simple as adding a new entry inside of the config. See t
     
     "url": "https://example.com/resourcepack.zip", -Public url used to download the pack
     
-    "hash": "examplehash", -The pack's SHA-1 hash
+    "hash": "examplehash", -The pack's SHA-1 hash. (Optional)
     
     "required": true, - Is the user required to use this pack? If the user declines they wull be kicked
     
     "hasPrompt": true, - Is the user prompted to use the pack? The prompt will always show if required is true
     
     "message": "plz use me" - Message to be displayed with the prompt
-    
+
     }
 The config also features `autoRevoke`. Enabling this will automatically revoke all of the above advancement criteria when another resourcepack is downloaded. If set to false, you must do the revoking on your own, else the criteria cannot be triggered again.
 
